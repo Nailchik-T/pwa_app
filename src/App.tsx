@@ -9,10 +9,20 @@ function App() {
     const [showInstallModal, setShowInstallModal] = useState(false)
 
     useEffect(() => {
+        const isInStandaloneMode = () =>
+            window.matchMedia('(display-mode: standalone)').matches ||
+            (window.navigator as any).standalone === true
+
+        if (isInStandaloneMode()) {
+            window.location.href = '/'
+        }
+    }, [])
+
+    useEffect(() => {
         const handler = (e: any) => {
-            e.preventDefault() // блокируем автоматический prompt
+            e.preventDefault()
             setDeferredPrompt(e)
-            setShowInstallModal(true) // показываем свою модалку
+            setShowInstallModal(true)
         }
 
         window.addEventListener('beforeinstallprompt', handler)
@@ -23,7 +33,7 @@ function App() {
 
     const installPWA = async () => {
         if (!deferredPrompt) return
-        deferredPrompt.prompt() // показываем нативный prompt
+        deferredPrompt.prompt()
         const choiceResult = await deferredPrompt.userChoice
         console.log('User choice:', choiceResult.outcome)
         setDeferredPrompt(null)
