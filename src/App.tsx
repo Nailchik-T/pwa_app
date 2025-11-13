@@ -14,7 +14,8 @@ function App() {
             (window.navigator as any).standalone === true
 
         if (isInStandaloneMode()) {
-            window.location.href = '/'
+            // Если PWA открыт как отдельное приложение, редиректим на нужный route
+            window.location.href = '/app' // здесь укажи путь внутри PWA
         }
     }, [])
 
