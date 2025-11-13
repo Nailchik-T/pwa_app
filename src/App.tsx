@@ -9,17 +9,6 @@ function App() {
     const [showInstallModal, setShowInstallModal] = useState(false)
 
     useEffect(() => {
-        const isInStandaloneMode = () =>
-            window.matchMedia('(display-mode: standalone)').matches ||
-            (window.navigator as any).standalone === true
-
-        if (isInStandaloneMode()) {
-            // Если PWA открыт как отдельное приложение, редиректим на нужный route
-            window.location.href = '/app' // здесь укажи путь внутри PWA
-        }
-    }, [])
-
-    useEffect(() => {
         const handler = (e: any) => {
             e.preventDefault()
             setDeferredPrompt(e)
