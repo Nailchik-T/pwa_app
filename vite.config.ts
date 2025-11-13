@@ -23,7 +23,7 @@ const manifest: Partial<ManifestOptions> | false = {
   display: "standalone",
   lang: "ru-RU",
   name: "AsterX",
-  short_name: "asterx",
+  short_name: "AsterX",
   screenshots:[
       {
       sizes: "3456x2234",
